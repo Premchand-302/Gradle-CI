@@ -83,3 +83,4 @@ Remove-Item -Recurse -Force .gradle, build -ErrorAction SilentlyContinue
 ```
 
 If `.\gradlew.bat --version` cannot download Gradle, it is usually a proxy/Zscaler/certificate issue. Share the exact error screenshot with the trainer.
+test
