@@ -44,6 +44,8 @@ dependencies {
     testImplementation("org.flywaydb:flyway-core:$flywayVersion")
     testImplementation("org.flywaydb:flyway-database-postgresql:$flywayVersion")
     testImplementation("org.postgresql:postgresql:${postgresqlVersion}")
+    testImplementation("io.qameta.allure:allure-cucumber7-jvm")
+    testImplementation("io.qameta.allure:allure-junit5")
 
     testImplementation("org.testcontainers:testcontainers-postgresql:${testcontainersVersion}")
 }
