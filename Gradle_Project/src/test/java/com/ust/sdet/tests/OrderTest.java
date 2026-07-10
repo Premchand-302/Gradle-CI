@@ -76,6 +76,19 @@ public class OrderTest {
     }
 
     @Test
+    void failTest() {
+
+        factory.persisted(
+                OrderBuilder.anOrder()
+                        .withSku("SKU-105")
+                        .build()
+        );
+
+        Order order = repo.findBySku("SKU-105");
+    }
+
+
+    @Test
     void countsOnlyShippedOrders() {
 
         factory.persisted(
