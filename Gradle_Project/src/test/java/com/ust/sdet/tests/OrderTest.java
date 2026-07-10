@@ -78,7 +78,7 @@ public class OrderTest {
     @Test
     void productDefect() {
 
-        factoy.persisted(
+        factory.persisted(
                 OrderBuilder.anOrder()
                         .withSku("SKU-100")
                         .build()
