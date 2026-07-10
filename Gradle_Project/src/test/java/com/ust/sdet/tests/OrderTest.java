@@ -76,13 +76,21 @@ public class OrderTest {
     }
 
     @Test
-    void failTest() {
+    void productDefect() {
 
-//        factory.persisted(
-//                OrderBuilder.anOrder()
-//                        .withSku("SKU-100")
-//                        .build()
-//        );
+        factoy.persisted(
+                OrderBuilder.anOrder()
+                        .withSku("SKU-100")
+                        .build()
+        );
+
+        Order order = repo.findBySku("SKU-100");
+
+        assertEquals("SKU-100", order.sku());
+        assertEquals(1, order.qty());
+    }
+    @Test
+    void failTest() {
 
         Order order = repo.findBySku("SKU-199");
 
