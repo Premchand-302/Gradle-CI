@@ -78,13 +78,16 @@ public class OrderTest {
     @Test
     void failTest() {
 
-        factory.persisted(
-                OrderBuilder.anOrder()
-                        .withSku("SKU-105")
-                        .build()
-        );
+//        factory.persisted(
+//                OrderBuilder.anOrder()
+//                        .withSku("SKU-100")
+//                        .build()
+//        );
 
-        Order order = repo.findBySku("SKU-105");
+        Order order = repo.findBySku("SKU-199");
+
+        assertEquals("SKU-199", order.sku());
+        assertEquals(1, order.qty());
     }
 
 
