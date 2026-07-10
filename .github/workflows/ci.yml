@@ -11,17 +11,21 @@ permissions:
 
 jobs:
   order-test:
+
     runs-on: ubuntu-latest
 
     services:
       postgres:
         image: postgres:16
+
         env:
           POSTGRES_DB: testdb
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
+
         ports:
           - 5432:5432
+
         options: >-
           --health-cmd="pg_isready -U postgres"
           --health-interval=10s
@@ -29,8 +33,11 @@ jobs:
           --health-retries=5
 
     steps:
+
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -47,54 +54,33 @@ jobs:
 
       - name: Run Order Test
         working-directory: Gradle_Project
-        run: ./gradlew orderTest
+        run: ./gradlew orderTest --no-configuration-cache
         env:
           JAVA_TOOL_OPTIONS: >
             -Ddb.url=jdbc:postgresql://localhost:5432/testdb
             -Ddb.user=postgres
             -Ddb.password=postgres
 
-      # Upload raw allure-results as an artifact
-      - name: Upload Allure Results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-results
-          path: Gradle_Project/build/allure-results
-
-      # Download previous report history (if GitHub Pages already exists)
-      - name: Get Allure History
+      - name: Checkout gh-pages branch
         if: always()
         uses: actions/checkout@v4
-        continue-on-error: true
         with:
           ref: gh-pages
           path: gh-pages
 
-      # Generate report + preserve history
       - name: Generate Allure Report
         if: always()
         uses: simple-elf/allure-report-action@master
         with:
           allure_results: Gradle_Project/build/allure-results
-          allure_history: allure-history
+          allure_report: allure-report
           gh_pages: gh-pages
+          allure_history: allure-history
 
-      # Upload generated report as artifact
-      - name: Upload Allure Report
+      - name: Deploy report to GitHub Pages
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-report
-          path: allure-history
-
-      # Publish to GitHub Pages
-      - name: Deploy Report to GitHub Pages
-        if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-history
-
-          #push 1
