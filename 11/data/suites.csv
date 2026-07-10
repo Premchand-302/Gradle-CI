@@ -1,0 +1,7 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","48","countsOrders()","","2026-07-10","passed","2026-07-10","","com.ust.sdet.tests.OrderTest","com.ust.sdet.tests.OrderTest","countsOrders"
+"","102","createsOrder()","","2026-07-10","passed","2026-07-10","","com.ust.sdet.tests.OrderTest","com.ust.sdet.tests.OrderTest","createsOrder"
+"","30","findsOrderBySku()","","2026-07-10","passed","2026-07-10","","com.ust.sdet.tests.OrderTest","com.ust.sdet.tests.OrderTest","findsOrderBySku"
+"","30","failTest()","","2026-07-10","broken","2026-07-10","","com.ust.sdet.tests.OrderTest","com.ust.sdet.tests.OrderTest","failTest"
+"","61","countsOnlyShippedOrders()","","2026-07-10","passed","2026-07-10","","com.ust.sdet.tests.OrderTest","com.ust.sdet.tests.OrderTest","countsOnlyShippedOrders"
+"","34","productDefect()","","2026-07-10","passed","2026-07-10","","com.ust.sdet.tests.OrderTest","com.ust.sdet.tests.OrderTest","productDefect"
